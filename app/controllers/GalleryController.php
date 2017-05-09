@@ -18,7 +18,7 @@ class GalleryController extends BaseController{
         if(is_dir(public_path() . '/img/gallery' . $data['name'])){
             return Redirect::back()->withInput()->withErrors("Foulder with name allready exists");
         }
-        $success = mkdir(public_path() . '/img/gallery' . $data['name'], 0777);
+        $success = mkdir(public_path() . '/img/gallery/' . $data['name'], 0777);
         if($success){
             return Redirect::to('gallery/' . $data['name']);
         }
