@@ -15,7 +15,7 @@ class GalleryController extends BaseController{
     }
     public function create(){
         $data = Input::only(['name']);
-        if(is_dir(public_path() . '/img/gallery' . $data['name'])){
+        if(is_dir(public_path() . '/img/gallery/' . $data['name'])){
             return Redirect::back()->withInput()->withErrors("Foulder with name allready exists");
         }
         $success = mkdir(public_path() . '/img/gallery/' . $data['name'], 0777);
@@ -39,7 +39,7 @@ class GalleryController extends BaseController{
             $rules = [
                 'file' => 'required|image'
             ];
-            $destination = 'img/gallery/' . $directory;
+            $destination = public_path() . '/img/gallery/' . $directory;
             foreach($files as $f){
                 $validator = Validator::make(['file'=>$f], $rules);
                 if($validator->passes()){
