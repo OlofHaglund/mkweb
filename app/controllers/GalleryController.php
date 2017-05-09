@@ -77,7 +77,7 @@ class GalleryController extends BaseController{
     }
 
     private function get_folders(){
-        $directories = scandir(self::PATH);
+        $directories = scandir(public_path() . '/img/gallery');
         $directories = array_diff($directories, array('..', '.'));
         return $directories;
     }
